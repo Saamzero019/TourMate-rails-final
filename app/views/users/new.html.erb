@@ -1,0 +1,45 @@
+<main class="ui teal raised very padded text container segment">
+    <h1>Sign-Up:</h1>
+    <%= form_for @user, controller: 'users', action: 'create' do |f| %>
+        <div class="ui basic segment">
+            <div class="ui labeled fluid input">
+                <div class="ui label">
+                    Username
+                </div>
+                <input type="text" name="user[name]" id="user_name">
+            </div>
+        </div>
+        <div class="ui basic segment">
+            <div class="ui labeled fluid input">
+                <div class="ui label">Email</div>
+                <input type="text" name="user[email]" id="user_email">
+            </div>
+        </div>
+        <div class="ui basic segment">
+            <div class="ui labeled fluid input">
+                <div class="ui label">Password</div>
+                <input type="password" name="user[password]" id="user_password">
+            </div>
+        </div>
+        <div class="ui basic segment">
+            <div class="ui labeled fluid input">
+                <div class="ui label">Retype Password</div>
+                <input type="password" name="user[password_confirmation]" id="user_password_confirmation">
+            </div>
+        </div>
+        <div class="ui basic segment">
+            <input class="ui teal button" type="submit" name="commit" value="Lets go!" data-disable-with="create">
+        </div>
+        <% end %>
+        <% if @user.errors.any? %>
+        <div class="ui padded text segment">
+            <div class="ui visible message">
+                <p>
+                    <% @user.errors.full_messages.each do |msg| %>
+                        <li><%= msg %></li>
+                    <% end %>
+                </p>
+            </div>
+        </div>
+        <% end %>
+</main>

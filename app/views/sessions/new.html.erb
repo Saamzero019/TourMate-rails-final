@@ -1,0 +1,35 @@
+<main class="ui teal raised very padded text container segment">
+<h1>Login:</h1>
+    <%= form_for @user, url: login_path, method: :post do |f| %>
+        <div class="ui basic segment">
+            <div class="ui fluid labeled input focus">
+                <div class="ui label">
+                    Username
+                </div>
+                <input type="text" name="user[name]" id="user_name">
+            </div>
+        </div>
+        <div class="ui basic segment">
+            <div class="ui fluid labeled input focus">
+                <div class="ui label">
+                    Password
+                </div>
+                <input class="ui input focus" type="password" name="user[password]" id="user_password">
+            </div>
+        </div>
+
+        <div class="ui basic segment">
+            <input class="ui positive button" type="submit" name="commit" value="login" data-disable-with="log in">
+            <a class="ui teal right floated button" href="/users/new">sign up</a>
+        </div>
+        <% end %>
+        <% if @user == "User not found" %>
+        <div class="ui padded text segment">
+            <div class="ui visible message">
+                <p>
+                    <%= @user %>
+                </p>
+            </div>
+        </div>
+        <% end %>
+</main>

@@ -1,0 +1,66 @@
+<main class="ui teal raised very padded text container segment">
+    <div class="ui basic segment">
+        <h1 class="ui huge header">Create a New Trip</h1>
+    </div>
+    <%= form_for @trip do |f| %>
+        <div class="ui basic segment">
+            <div class="ui labeled fluid input">
+                <div class="ui label">
+                    Trip Name
+                </div>
+                <input type="text" name="trip[name]" id="trip_name">
+            </div>
+        </div>
+        <div class="ui basic segment">
+            <div class="ui labeled fluid input">
+                <div class="ui label">
+                    Description
+                </div>
+                <textarea name="trip[description]" id="trip_description"></textarea>
+            </div>
+        </div>
+        <div class="ui basic segment">
+            <div class="ui labeled fluid input">
+                <div class="ui label">
+                    Date and Time
+                </div>
+                <input type="datetime-local" name="trip[date]" id="trip_date">
+            </div>
+        </div>
+        <div class="ui basic segment">
+            <div class="ui labeled fluid input">
+                <div class="ui label">
+                    Category
+                </div>
+                <%= f.collection_select :category_id, Category.all, :id, :name %>
+            </div>
+        </div>
+        <div class="ui basic segment">
+            <div class="ui labeled fluid input">
+                <div class="ui label">
+                    Location
+                </div>
+                <%= f.fields_for :location do |location_builder| %>
+                    <input type="text" name="trip[location_attributes][city]" id="trip_location_attributes_city" placeholder="City">
+                    <%= location_builder.collection_select :state, State.all, :name, :name %>
+                        <% end %>
+            </div>
+        </div>
+        <div class="ui basic segment">
+            <input class="ui positive button" type="submit" name="commit" value="Create Trip!" data-disable-with="create trip">
+        </div>
+        <% end %>
+            <% if @trip.errors.any? %>
+                <div class="ui padded text segment">
+                    <div class="ui visible message">
+                        <p>
+                            <% @trip.errors.full_messages.each do |msg| %>
+                                <li>
+                                    <%= msg %>
+                                </li>
+                                <% end %>
+                        </p>
+                    </div>
+                </div>
+                <% end %>
+</main>

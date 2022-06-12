@@ -1,0 +1,43 @@
+<section id="left_banner">
+    <div class="ui raised segment">
+        <img class="ui tiny avatar image" src="<%=@user.photo %>" alt="<%=@user.name%>">
+        <span class="ui header">
+            <%= @user.name %>
+        </span>
+        <a class="ui primary right floated positive button" href="/trips/new">New Trip</a>
+    </div>
+    <div class="ui teal text container raised segment">
+        <h3 class="ui teal center aligned header">Your Trips</h3>
+    </div>
+</section>
+<% if @user.trips.any? %>
+    <main class="ui raised very padded text container segment">
+        <section>
+            <% @user.trips.all.reverse.each do |trip| %>
+                <div class="ui vertical segment">
+                    <h3 class="ui header">
+                        <%= link_to  trip.name, trip_path(trip) %>
+                    </h3>
+                    <h5 class="ui header">
+                        <%= trip.find_author.name %>
+                    </h5>
+                    <p class="ui segment">
+                        <%= trip.description %>
+                    </p>
+                    <% if @user.id == trip.author_id %>
+                        <!-- <div class="ui buttons">
+                            <button class="ui tiny button">
+                        <= link_to  "Edit", edit_trip_path(trip) >
+                    </button> -->
+                        <button class="ui tiny button">
+                        <%= link_to  "Delete Trip", trip_path(trip), method: :delete, data: { confirm: "Are you sure?" } %>
+                    </button>
+                </div>
+                <% end %>
+                    </div>
+                    <% end %>
+        </section>
+    </main>
+    <% else %>
+
+        <% end %>
