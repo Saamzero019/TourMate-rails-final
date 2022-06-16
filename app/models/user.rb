@@ -11,6 +11,9 @@ class User < ApplicationRecord
     has_many :posts
     has_many :items
 
+
+    enum role: [:user, :admin]
+
     def friends?
         self.friends
     end

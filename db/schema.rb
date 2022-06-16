@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_22_165444) do
+ActiveRecord::Schema.define(version: 2022_06_15_073256) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -96,6 +96,7 @@ ActiveRecord::Schema.define(version: 2019_08_22_165444) do
     t.string "photo", default: "https://images.pexels.com/photos/1704488/pexels-photo-1704488.jpeg?cs=srgb&dl=pexels-suliman-sallehi-1704488.jpg&fm=jpg"
     t.string "twitter"
     t.string "instagram"
+    t.integer "role", default: 0
   end
 
   add_foreign_key "items", "trips"

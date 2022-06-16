@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  
   root 'experiences#start'
   get '/login' => 'sessions#new'
   get '/home' => 'experiences#index'
