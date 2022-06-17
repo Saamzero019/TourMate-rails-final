@@ -12,4 +12,44 @@
 //
 //= require rails-ujs
 //= require activestorage
+
+//= require jquery
+//= require jquery.min
+//= require jquery_ujs
+//= require jquery-ui
+//= require easing
+//= jquery.flexslider
+//= move-top
+//= require jquery-ui
+
 //= require_tree .
+
+
+
+$(document).ready(function($) {
+	$( "#datepicker,#datepicker1" ).datepicker({ dateFormat: 'yy-mm-dd' });
+	var loc = window.location.href.split('/');
+	var page = loc[loc.length - 1];
+	if (page == 'rooms'){
+		$('#navigation_bar li a:first').removeClass("active");
+		$('#navigation_bar li a:eq(1)').addClass("active");
+	}
+	else
+	{
+		$('#navigation_bar li a:first').addClass("active");
+	}
+	
+    $(function(){
+      SyntaxHighlighter.all();
+    });
+    $(window).load(function(){
+      $('.flexslider').flexslider({
+        animation: "slide",
+        directionNav : false,
+        slideshowSpeed:3000,
+        start: function(slider){
+          $('body').removeClass('loading');
+        }
+      });
+    });
+});

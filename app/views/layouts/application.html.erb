@@ -6,42 +6,33 @@
     <%= csrf_meta_tags %>
         <%= csp_meta_tag %>
 
-            <%= stylesheet_link_tag    'application', media: 'all' %>
+            <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
                 <%= javascript_include_tag 'application' %>
                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.css">
-</head>
+
+
+                    <%= javascript_include_tag("jquery.flexslider")%>
+
+                    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<!---- start-smoth-scrolling---->
+
+	<script type="text/javascript">
+	      jQuery(document).ready(function($) {
+	        $(".scroll").click(function(event){   
+	          event.preventDefault();
+	          $('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+	        });
+	      });
+	    </script>
+	<!--start-smoth-scrolling-->
+                </head>
 
 <body>
-    <nav class="ui secondary pointing menu">
-        <div class="ui basic segment" style="padding:0%; margin-block:auto;">
-            <a href="/"> <img class="" src="https://tourmatetours.com/wp-content/uploads/2022/01/tourmate_tours_logo_rectangle-removebg-preview.png" alt="Tourmate" width="40" height="30"></a>
-        </div>
-
-        <% if logged_in? %>
-            <a class="item" href="/">My Trips</a>
-            <% if current_user.friend_requests? %>
-                <a class="item" href="<%= friends_path %>">
-              Friends
-              <div class="floating ui red circular label"><%=current_user.requested_friends.count%></div></a>
-                <% else %>
-                    <a class="item" href="<%= friends_path %>">Friends</a>
-                    <% end %>
-                        <a class="item" href="<%= user_path(current_user)%>">Profile</a>
-                        <a class="item" href="/trips/browse">Browse</a>
-                        <% end %>
-
-
-                            <div class="right menu">
-                                <div class="item">
-                                    <% if session[:user_id] %>
-                                        <%= form_tag ({controller: 'sessions', action: 'destroy', method: 'post'}) do %>
-                                            <input class="ui basic button" type=submit value='logout'>
-                                            <% end %>
-                                                <% end %>
-                                </div>
-                            </div>
-    </nav>
+    <%=  render partial = "shared/navbar"%>
     <%= yield %>
 </body>
 
 </html>
+
+

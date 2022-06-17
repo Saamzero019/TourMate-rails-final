@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   
-  root 'experiences#start'
+  root  to: 'home#home'
   get '/login' => 'sessions#new'
   get '/home' => 'experiences#index'
   get '/signup' => 'users#new'
@@ -22,5 +22,14 @@ Rails.application.routes.draw do
   resources :friends, only: [:index, :create]
   resources :users
   resources :trips
+
+  resources :rooms
+  resources :bookings
+
+  namespace :api do
+    namespace :v1 do
+      resources :bookings, only: [:create, :index]
+    end
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
