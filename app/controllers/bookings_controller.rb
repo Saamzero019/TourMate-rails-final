@@ -3,6 +3,7 @@ class BookingsController < ApplicationController
     # GET /bookings
     # GET /bookings.json
     def index
+    
       @bookings = current_user.bookings.includes(:room).paginate(page: params[:page], per_page: 10)
     end
   

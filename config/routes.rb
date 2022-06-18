@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   
-  root  to: 'home#home'
+  root 'experiences#start'
   get '/login' => 'sessions#new'
   get '/home' => 'experiences#index'
   get '/signup' => 'users#new'
@@ -25,7 +25,7 @@ Rails.application.routes.draw do
 
   resources :rooms
   resources :bookings
-
+  
   namespace :api do
     namespace :v1 do
       resources :bookings, only: [:create, :index]

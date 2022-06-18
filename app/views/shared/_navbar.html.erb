@@ -2,9 +2,13 @@
     <div class="ui basic segment" style="padding:0%; margin-block:auto;">
         <a href="/"> <img class="" src="https://tourmatetours.com/wp-content/uploads/2022/01/tourmate_tours_logo_rectangle-removebg-preview.png" alt="Tourmate" width="40" height="30"></a>
     </div>
-      <a href="/rooms" class="item">Rooms</a>
-    <% if logged_in? %>
-        <a class="item" href="/">My Trips</a>
+    <% if !logged_in?%>
+      <a href="/home" class="item ">Home</a>
+      <a href="/login" class="item" style="text-align: right;">Sign In</a>
+      <a href="/signup" class="item">Sign Up</a>
+    <%end%>
+      <% if logged_in? %>
+        <a class="item" href="/home">My Trips</a>
         <% if current_user.friend_requests? %>
             <a class="item" href="<%= friends_path %>">Friends
           <div class="floating ui red circular label"><%=current_user.requested_friends.count%></div></a>
@@ -14,6 +18,7 @@
                     <a class="item" href="<%= user_path(current_user)%>">Profile</a>
                     <a class="item" href="/trips/browse">Browse</a>
                     <%= link_to 'Bookings', bookings_path,class: "item" %>
+                    <%= link_to 'Rooms', rooms_path,class: "item" %>
                     <% end %>
 
 

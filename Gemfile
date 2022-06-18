@@ -37,8 +37,12 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'rails_admin'
 #friends
 gem 'has_friendship'
-
+gem 'devise-bootstrapped'
 gem 'will_paginate'
+
+gem 'hirb'
+# bundle exec rake doc:rails generates the API under doc/api.
+gem 'sdoc', '~> 0.4.0', group: :doc
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
